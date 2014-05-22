@@ -28,7 +28,7 @@ class JSErrorTest(unittest.TestCase):
         
    
 
-    ADDRESS = 'http:/%s.%s/' % (os.getenv('CITY'), os.getenv('SITE'))
+    ADDRESS = 'http://%s.%s/' % (os.getenv('CITY'), os.getenv('SITE'))
 
     profile = webdriver.FirefoxProfile()
     profile.add_extension('JSErrorCollector.xpi')
