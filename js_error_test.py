@@ -51,12 +51,13 @@ class JSErrorTest(unittest.TestCase):
         jserrors = self.driver.execute_script('return window.JSErrorCollector_errors.pump()')
         if jserrors:
             for error in jserrors:
-                cnt+=1
-                print 'На странице ', self.driver.current_url[len(self.ADDRESS):], ' обнаружена JavaScript ошибка:'
-                print 'Файл с ошибкой, либо URL страницы: ', error['sourceName']
-                print 'Информация об ошибке: ', error['errorMessage']
-                print 'Строка содержащая ошибку: ', error['lineNumber']
-                print '-'*80
+                if 'mailpechkin' not in error['sourceName'] and 'VK is not defined' not in error['errorMessage'] and 'facebook' not in error['sourceName']:
+                    cnt+=1
+                    print 'На странице ', self.driver.current_url[len(self.ADDRESS):], ' обнаружена JavaScript ошибка:'
+                    print 'Файл с ошибкой, либо URL страницы: ', error['sourceName']
+                    print 'Информация об ошибке: ', error['errorMessage']
+                    print 'Строка содержащая ошибку: ', error['lineNumber']
+                    print '-'*80
         return cnt
 
     def test_js_error(self):
